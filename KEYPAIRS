@@ -1,53 +1,52 @@
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TBPMDTA7SP7XX7UYPMRZD5BEKDVW7XV4YEDSAAZE
 PUBLIC_KEY: 8e5fd91cbe6bbde1e3f82a242c9a5b3fa1b51a06c01cd1cc0a62c5eb1315d894
 PRIVATE_KEY: 51f7c2380496c38e6ae450ffb21e9ebb890fe6c185680a90a3ba52349760de05
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TBPTVX5TYL3X32GHE5R4QAWCJCOOJURCMTHG7BK4
 PUBLIC_KEY: f9cd79f32c1bb7f44fffb88d531d41dbd1120a4b07a2e55da39d33486b3de477
 PRIVATE_KEY: 7c9f265422d0a45ae0e9d19e820b142d73b8e2a0c93348565a61619d81869034
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TDWCXTBAAXITTLOGSSY5T5A3ISIPWAYILOZTVMOQ
 PUBLIC_KEY: 024356d3b61db92403cc78d3dd23c7af99f05f14ec8b2292e4a0e6a62401d14c
 PRIVATE_KEY: 53e9a150dfd71f121547c6449faaee7e38e53de6e0cb13991f59b3ea96a15e4b
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TACKOLHCKIDCA5PZEYILICL7OROBX5CMQIZLE6AC
 PUBLIC_KEY: ff9da367b4d5f6aff58361c448b663d5393afb20aa4c0b2cd7e4f962ca8c9cdb
 PRIVATE_KEY: 2e0da37909ff7d0f548e2a66929c541389f07d46bd76d428aaad0221d93b2c99
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TCPCM7AKSJDUTEXVAPMLUAPSUS4UGYMV6CLLOOJ4
 PUBLIC_KEY: 0a38cf34c8535bf810cbf584ee13f1a5604dbb2bffea16913ec87b846a8c2e35
 PRIVATE_KEY: 20cdfd44a10af44dba3c4ceb70a275c015558cd42709c485f4cb8a602aebf3a8
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TDWDV6OVOH56LNKWK43QOSSMRSDX5SLQPLQDBF45
 PUBLIC_KEY: 11616ef6e53517b0832cf90fce67d7cf6520c375fa20ecf59b75c5bb737f200a
 PRIVATE_KEY: a64adf65ad7c03a79a8738ee96552ee02fb51666ffae5947785e4e7293397271
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TCSHO44PSZOHVGJARERZZRZVX4PDZKX4EVAPDQRL
 PUBLIC_KEY: c8480f9b07a370bf84cea03f8aefea790758934eb2bd259633c385420b5b4dc9
 PRIVATE_KEY: 514f5a6572a67e3afa435af056f96c69bd7df69164aed018a043892dbee0cd4c
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TDNCTYFN5OGWL4ZVZXKZHQLHJPMKCRPP6YTEH7K3
 PUBLIC_KEY: 0ae9b6c31ac9af5c9fa7c0e5b23bbf89e5b07cab4c990803cd03260a1084d6de
 PRIVATE_KEY: 87accb07d4f2bc18bc52336474fc4a009de3582df8ccf340e6a959b1b089c0fa
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TCUTPFEJPXYJLJOOMEKRBH7RQCZP6YWFEJN5C4TO
 PUBLIC_KEY: d2815aa3c82abc1ddcb8df10acc43fb60db60269aa8e4ef70ccdb7e9707eb626
 PRIVATE_KEY: 32976a01efe816d3850316432ff4ec9687a0045240bb2d2aea30667c5d0c40c7
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TDVS66WVCT4HEYEUISOWGBT4IR65AF2GNFZZQNUL
 PUBLIC_KEY: 9c2f7b9cfce31c1dffc231d80b6db7481f292f0ea1a65ba172c09ff52a846abf
 PRIVATE_KEY: fbddcfb65e25e920207abcc9a5c14aa5797d00564d2a5ec7caf49fbb1e91bb77
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TA3ZG4J4NVJVJPMFO5KOX7BFYRUFXEXXAFELWIKJ
 PUBLIC_KEY: 64947c0f9072266134c349d5ddacd1d8d039c9a586f9bb668e9538276580873f
 PRIVATE_KEY: 81a8074ca1f731f7947960d498247ae1673f222f7e7bd1902f2c88554f554f08
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TBHY5T2LPPDFTLFCXNDL5I3IQYY46HMCMHE2YVBT
 PUBLIC_KEY: 7cf5e7efb5419f9908c44e580a1e4545a56a78b68ac88592e0d6190a52140888
 PRIVATE_KEY: 0d75d61672d464ce1cf1d6fa9c0c3fc4f05297cad2c11e3ba403e88a31758a3e
-AJWCCs-MBP:~ ajwcc$ node class.js
+=============================================================================
 ADDRESS: TAW7ELRVDY4E7U4WJTPXSWUFFXVJEI3NDK6ZBM7Y
 PUBLIC_KEY: cd8590bb4f29d9f5bb7392e0c831385adf5103105eda615b7c887f0905c9b6a4
 PRIVATE_KEY: 823b88355d4c6231683f62a530643d1222effad4aa61ca10cb6f72c1a816f5e0
-AJWCCs-MBP:~ ajwcc$
