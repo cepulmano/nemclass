@@ -1,0 +1,39 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<div class="jumbotron text-center">
+	  <h1>Generate Account</h1>
+	</div>
+
+	<div id="generateaccount" style="width: 850px;margin: auto;border: 1px solid #444;padding: 20px;overflow: auto;">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label class="control-label">Private Key: </label>
+				<input type="text" class="form-control" id="privatekey" readonly />
+				<label class="control-label">Public Key: </label>
+				<input type="text" class="form-control" id="publickey" readonly />
+				<label class="control-label">Address: </label>
+				<input type="text" class="form-control" id="address" readonly />
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="form-group">
+				<fieldset>
+					<button class="btn btn-success" style="width:100%;" id="generate">Generate Account</button>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../dist/nem-sdk.js"></script>
+<script src="script.js"></script>
+
+</html>
