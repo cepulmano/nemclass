@@ -4,11 +4,6 @@ $(document).ready(function () {
 	// This is not needed if you use the repl.js script available in the container
 	var nem = require("nem-sdk").default;
 
-
-    $.get( "http://23.228.67.85:7890/account/get?address=TDOCO2KSPR42HYPJH7JXHOGBBV2MN2YNG7BJDXEY", function( data ) {
-	  console.log(data)
-	});
-
 	function generate() {
 
 		// generate 32 random bytes. 
