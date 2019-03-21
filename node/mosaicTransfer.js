@@ -5,7 +5,7 @@ var nem = require("nem-sdk").default;
 var endpoint = nem.model.objects.create("endpoint")(nem.model.nodes.defaultTestnet, nem.model.nodes.defaultPort);
 
 // Create a common object holding key 
-var common = nem.model.objects.create("common")("", "PRIVATE_KEY");
+var common = nem.model.objects.create("common")("", "A4C70AC6787B14919779D281166BFAD304221B237203914F270901CE27F2CEA4");
 
 // Create variable to store our mosaic definitions, needed to calculate fees properly (already contains xem definition)
 var mosaicDefinitionMetaDataPair = nem.model.objects.get("mosaicDefinitionMetaDataPair");
@@ -29,9 +29,7 @@ nem.com.requests.chain.time(endpoint).then(function (timeStamp) {
 	const due = 60;
 	transactionEntity.deadline = ts + due * 60;
 
-	transactionEntity.fee = 400000;
-	
-	console.log(transactionEntity);	
+	// transactionEntity.fee = 40000000;
 
 	// Serialize transfer transaction and announce
 	nem.model.transactions.send(common, transactionEntity, endpoint).then(function(res){
