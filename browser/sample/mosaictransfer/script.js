@@ -75,7 +75,7 @@ $(document).ready(function () {
 			transactionEntity.timeStamp = ts;
 			const due = 60;
 			transactionEntity.deadline = ts + due * 60;
-			// transactionEntity.fee = 400000;
+			transactionEntity.fee = 4000000;
 			nem.model.transactions.send(common, transactionEntity, endpoint).then(function(res){
 				if (res.code >= 2) { alert(res.message); } 
 				else { alert(res.message); }
@@ -116,6 +116,7 @@ $(document).ready(function () {
 
 				// Push attachment into transaction mosaics
 				transferTransaction.mosaics.push(mosaicAttachment);
+
 
 				// Calculate back the quantity to an amount to show in the view. It should be the same as user input but we double check to see if quantity is correct.
 				var totalToShow = nem.utils.format.supply(quantity, {"namespaceId": $("#namespaceId").val(), "name": $("#mosaicName").val()}, mosaicDefinitionMetaDataPair)[0] + '.' + nem.utils.format.supply(quantity, {"namespaceId": $("#namespaceId").val(), "name": $("#mosaicName").val()}, mosaicDefinitionMetaDataPair)[1];

@@ -1,43 +1,78 @@
-// Include the library
-var nem = require("nem-sdk").default;
+var nem = require('nem-sdk').default;
+var endpoint = nem.model.objects.create('endpoint')(nem.model.nodes.defaultTestnet, nem.model.nodes.defaultPort);
+const privKey = 'yourprivatekey';
+const passWord = 'yourpasssword';
+const toAddress = 'TAKZVW3H4HSZDZK3KBY7AKJLSM6KYQOG3IZN5I5K';
+const myNamespace = 'gameworkz';
+const myMosaicName = 'gwz';
+var sendMosaicAmount = 10000000000;
 
-// Create an NIS endpoint object
-var endpoint = nem.model.objects.create("endpoint")(nem.model.nodes.defaultTestnet, nem.model.nodes.defaultPort);
+var common = nem.model.objects.create('common')(passWord,privKey);
 
-// Create a common object holding key 
-var common = nem.model.objects.create("common")("", "A4C70AC6787B14919779D281166BFAD304221B237203914F270901CE27F2CEA4");
+var transferTransaction =  nem.model.objects.create('transferTransaction')(toAddress, 1, "");
 
-// Create variable to store our mosaic definitions, needed to calculate fees properly (already contains xem definition)
-var mosaicDefinitionMetaDataPair = nem.model.objects.get("mosaicDefinitionMetaDataPair");
+console.log(transferTransaction);
 
-// Create an un-prepared mosaic transfer transaction object (use same object as transfer tansaction)
-var transferTransaction = nem.model.objects.create("transferTransaction")("TAMGBBNOVYYITGZ4KK2U7SE2VNQNCP4D63HABXP7", 0, "");
+var myMosaic = nem.model.objects.create('mosaicAttachment')(myNamespace, myMosaicName, sendMosaicAmount);
+	transferTransaction.mosaics.push(myMosaic);
 
-// Create a mosaic attachment object
-var mosaicAttachment = nem.model.objects.create("mosaicAttachment")("ateneo", "mymosaic1", 5000);
+console.log(myMosaic);
 
-// Push attachment into transaction mosaics
-transferTransaction.mosaics.push(mosaicAttachment);
+//==========================================================================================================================//
+// Get the mosaic definition to calculate the fee correctly
+//==========================================================================================================================//
+var mosaicDefinitionMetaDataPair = nem.model.objects.get('mosaicDefinitionMetaDataPair');
 
-// Prepare the transfer transaction object
-var transactionEntity = nem.model.transactions.prepare("mosaicTransferTransaction")(common, transferTransaction, mosaicDefinitionMetaDataPair, nem.model.network.data.testnet.id);
+console.log(mosaicDefinitionMetaDataPair);
 
-// Adjust timestamp and deadline
-nem.com.requests.chain.time(endpoint).then(function (timeStamp) {
-	const ts = Math.floor(timeStamp.receiveTimeStamp / 1000);
-	transactionEntity.timeStamp = ts;
-	const due = 60;
-	transactionEntity.deadline = ts + due * 60;
+nem.com.requests.namespace.mosaicDefinitions(endpoint, myMosaic.mosaicId.namespaceId).then(res=>{
 
-	// transactionEntity.fee = 40000000;
+	// Get mosaic definition and store in mosaic definition object
+	var neededDefinition = nem.utils.helpers.searchMosaicDefinitionArray(res.data,[myMosaicName]);
 
-	// Serialize transfer transaction and announce
-	nem.model.transactions.send(common, transactionEntity, endpoint).then(function(res){
-		console.log(res);
-	}, function(err){
-		console.log(err);
+	console.log(neededDefinition);
+
+	// Get the name of the mosaic for use in the mosaic definition object
+	var fullMosaicName = nem.utils.format.mosaicIdToName(myMosaic.mosaicId);
+
+	console.log(fullMosaicName);
+
+	// Check existence of mosaic
+	if (undefined === neededDefinition[fullMosaicName]){
+		return  console.log('Mosaic not found!');
+	}
+
+	// Add mosaic definition to mosaic definition object
+	mosaicDefinitionMetaDataPair[fullMosaicName] = {};
+	mosaicDefinitionMetaDataPair[fullMosaicName].mosaicDefinition = neededDefinition[fullMosaicName];
+
+	nem.com.requests.mosaic.supply(endpoint, fullMosaicName).then(supplyRes=>{
+
+		// Set supply amount to mosaicDefinitionMetaDataPair.
+		mosaicDefinitionMetaDataPair[fullMosaicName].supply = supplyRes.supply ;
+
+		// Prepare to sign and send the transaction
+		var transactionEntity = nem.model.transactions.prepare('mosaicTransferTransaction')(common, transferTransaction, mosaicDefinitionMetaDataPair, nem.model.network.data.testnet.id);
+
+		console.log(transactionEntity);
+
+		nem.com.requests.chain.time(endpoint).then(function (timeStamp){
+			const ts = Math.floor(timeStamp.receiveTimeStamp / 1000);
+			transactionEntity.timeStamp = ts;
+			const due = 60;
+			transactionEntity.deadline = ts + due * 60;
+			
+			nem.model.transactions.send(common, transactionEntity, endpoint).then(function(res){
+				console.log(res);
+			}, function(err){
+				console.log(err);
+			});
+		}, function (err) {
+			console.error(err);
+		});
+	}, function (err) {
+		console.error(err);
 	});
-	
 }, function (err) {
 	console.error(err);
 });

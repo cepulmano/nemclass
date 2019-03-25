@@ -23,6 +23,8 @@ tx.properties.divisibility = 0;
 tx.properties.transferable = true;
 tx.properties.supplyMutable = true;
 
+return console.log(tx);
+
 // Prepare the transaction object
 var transactionEntity = nem.model.transactions.prepare("mosaicDefinitionTransaction")(common, tx, nem.model.network.data.testnet.id);
 
