@@ -75,7 +75,6 @@ $(document).ready(function () {
 			transactionEntity.timeStamp = ts;
 			const due = 60;
 			transactionEntity.deadline = ts + due * 60;
-			transactionEntity.fee = 4000000;
 			nem.model.transactions.send(common, transactionEntity, endpoint).then(function(res){
 				if (res.code >= 2) { alert(res.message); } 
 				else { alert(res.message); }
@@ -108,24 +107,33 @@ $(document).ready(function () {
 				mosaicDefinitionMetaDataPair[fullMosaicName] = {};
 				mosaicDefinitionMetaDataPair[fullMosaicName].mosaicDefinition = neededDefinition[fullMosaicName];
 
-				// Now we have the definition we can calculate quantity out of user input
-				var quantity = nem.utils.helpers.cleanTextAmount($("#mosaicAmount").val()) * Math.pow(10, neededDefinition[fullMosaicName].properties[0].value);
+				nem.com.requests.mosaic.supply(endpoint, fullMosaicName).then(function(supplyRes) {
 
-				// Create a mosaic attachment
-				var mosaicAttachment = nem.model.objects.create("mosaicAttachment")($("#namespaceId").val(), $("#mosaicName").val(), quantity);
+					// Set supply amount to mosaicDefinitionMetaDataPair.
+					mosaicDefinitionMetaDataPair[fullMosaicName].supply = supplyRes.supply;
 
-				// Push attachment into transaction mosaics
-				transferTransaction.mosaics.push(mosaicAttachment);
+					// Now we have the definition we can calculate quantity out of user input
+					var quantity = nem.utils.helpers.cleanTextAmount($("#mosaicAmount").val()) * Math.pow(10, neededDefinition[fullMosaicName].properties[0].value);
+
+					// Create a mosaic attachment
+					var mosaicAttachment = nem.model.objects.create("mosaicAttachment")($("#namespaceId").val(), $("#mosaicName").val(), quantity);
+
+					// Push attachment into transaction mosaics
+					transferTransaction.mosaics.push(mosaicAttachment);
 
 
-				// Calculate back the quantity to an amount to show in the view. It should be the same as user input but we double check to see if quantity is correct.
-				var totalToShow = nem.utils.format.supply(quantity, {"namespaceId": $("#namespaceId").val(), "name": $("#mosaicName").val()}, mosaicDefinitionMetaDataPair)[0] + '.' + nem.utils.format.supply(quantity, {"namespaceId": $("#namespaceId").val(), "name": $("#mosaicName").val()}, mosaicDefinitionMetaDataPair)[1];
+					// Calculate back the quantity to an amount to show in the view. It should be the same as user input but we double check to see if quantity is correct.
+					var totalToShow = nem.utils.format.supply(quantity, {"namespaceId": $("#namespaceId").val(), "name": $("#mosaicName").val()}, mosaicDefinitionMetaDataPair)[0] + '.' + nem.utils.format.supply(quantity, {"namespaceId": $("#namespaceId").val(), "name": $("#mosaicName").val()}, mosaicDefinitionMetaDataPair)[1];
 
-				// Push mosaic to the list in view
-				$("#mosaicList").prepend('<li>'+ totalToShow +' <small><b>'+  $("#namespaceId").val() + ':' + $("#mosaicName").val() +'</b></small> </li>');
+					// Push mosaic to the list in view
+					$("#mosaicList").prepend('<li>'+ totalToShow +' <small><b>'+  $("#namespaceId").val() + ':' + $("#mosaicName").val() +'</b></small> </li>');
 
-				// Update the transaction fees in view
-				updateFee();
+					// Update the transaction fees in view
+					updateFee();
+
+				}, function (err) {
+					console.error(err);
+				});
 			}, 
 			function(err) {
 				alert(err);
